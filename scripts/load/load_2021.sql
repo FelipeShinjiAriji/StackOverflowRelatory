@@ -93,13 +93,13 @@ BEGIN
         resposta_id := TO_NUMBER(REGEXP_SUBSTR(line_buffer, '^[^,]+'));
 
         v_idade := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 39);
-        v_trabalho_remoto := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 3); -- Employment field
+        v_trabalho_remoto := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 3);
         v_formacao := MAP_FORMACAO(REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 7));
         v_yearscode := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 10);
         v_pais := MAP_COUNTRY(REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 4));
         v_cargo := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 12);
         v_moeda := MAP_CURRENCY(REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 14));
-        v_salario_anual := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 48); -- ConvertedCompYearly
+        v_salario_anual := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 48);
         v_linguagens := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 17);
 
         IF NOT IS_VALID_VALUE(v_salario_anual) THEN

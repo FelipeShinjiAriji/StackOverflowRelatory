@@ -101,7 +101,7 @@ BEGIN
         resposta_id := TO_NUMBER(REGEXP_SUBSTR(line_buffer, '^[^,]+'));
 
         v_idade := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 4);
-        v_trabalho_remoto := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 16); -- Employment field
+        v_trabalho_remoto := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 16);
         v_formacao := MAP_FORMACAO(REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 15));
         v_yearscode := REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 60);
         v_pais := MAP_COUNTRY(REGEXP_SUBSTR(line_buffer, '"[^"]*"|[^,]+', 1, 9));

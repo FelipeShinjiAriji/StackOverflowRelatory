@@ -1,7 +1,10 @@
-ANTES:
+# Faixa Etária x Linguagem
 
+<!-- Plano de execução antes dos índices -->
+
+```sql
 Plan hash value: 4182036136
- 
+
 ------------------------------------------------------------------------------------------------------------------------------
 | Id  | Operation                                | Name                      | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
 ------------------------------------------------------------------------------------------------------------------------------
@@ -25,23 +28,24 @@ Plan hash value: 4182036136
 |  17 |     VIEW                                 |                           |    11 |   374 |       |     2   (0)| 00:00:01 |
 |  18 |      TABLE ACCESS FULL                   | SYS_TEMP_0FD9D6736_30A625 |    11 |   495 |       |     2   (0)| 00:00:01 |
 ------------------------------------------------------------------------------------------------------------------------------
- 
-Predicate Information (identified by operation id):
----------------------------------------------------
- 
+```
+
+```sql
    3 - filter(COUNT(*)>=100)
-"   5 - filter(""MAP_CURRENCY_TO_USD""(""M"".""MOEDA"",TO_NUMBER(""R"".""SALARIO_ANUAL""))>=1000 AND "
-"              ""MAP_CURRENCY_TO_USD""(""M"".""MOEDA"",TO_NUMBER(""R"".""SALARIO_ANUAL""))<=1000000)"
-"   6 - access(""R"".""MOEDA_ID""=""M"".""ID""(+))"
-"   8 - access(""RL"".""LINGUAGEM_ID""=""L"".""ID"")"
-"  10 - access(""R"".""ID""=""RL"".""RESPOSTA_ID"")"
-"  11 - filter(""R"".""SALARIO_ANUAL"" IS NOT NULL AND ""R"".""SALARIO_ANUAL""<>'NA')"
-"  14 - access(""S1"".""LINGUAGEM""=""S2"".""LINGUAGEM""(+) AND ""S1"".""ANO""=""S2"".""ANO""(+)+1)"
+   5 - filter(MAP_CURRENCY_TO_USD(M.MOEDA,TO_NUMBER(R.SALARIO_ANUAL))>=1000 AND MAP_CURRENCY_TO_USD(M.MOEDA,TO_NUMBER(R.SALARIO_ANUAL))<=1000000)
+   6 - access(R.MOEDA_ID=M.ID(+))
+   8 - access(RL.LINGUAGEM_ID=L.ID)
+  10 - access(R.ID=RL.RESPOSTA_ID)
+  11 - filter(R.SALARIO_ANUAL IS NOT NULL AND R.SALARIO_ANUAL<>'NA')
+  14 - access(S1.LINGUAGEM=S2.LINGUAGEM(+) AND S1.ANO=S2.ANO(+)+1)
+```
 
-DEPOIS:
+---
 
+<!-- Plano de execução depois dos índices -->
+```sql
 Plan hash value: 4182036136
- 
+
 ------------------------------------------------------------------------------------------------------------------------------
 | Id  | Operation                                | Name                      | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
 ------------------------------------------------------------------------------------------------------------------------------
@@ -65,15 +69,14 @@ Plan hash value: 4182036136
 |  17 |     VIEW                                 |                           |    11 |   374 |       |     2   (0)| 00:00:01 |
 |  18 |      TABLE ACCESS FULL                   | SYS_TEMP_0FD9D6737_30A625 |    11 |   495 |       |     2   (0)| 00:00:01 |
 ------------------------------------------------------------------------------------------------------------------------------
- 
-Predicate Information (identified by operation id):
----------------------------------------------------
- 
+```
+
+```sql
    3 - filter(COUNT(*)>=100)
-"   5 - filter(""MAP_CURRENCY_TO_USD""(""M"".""MOEDA"",TO_NUMBER(""R"".""SALARIO_ANUAL""))>=1000 AND "
-"              ""MAP_CURRENCY_TO_USD""(""M"".""MOEDA"",TO_NUMBER(""R"".""SALARIO_ANUAL""))<=1000000)"
-"   6 - access(""R"".""MOEDA_ID""=""M"".""ID""(+))"
-"   8 - access(""RL"".""LINGUAGEM_ID""=""L"".""ID"")"
-"  10 - access(""R"".""ID""=""RL"".""RESPOSTA_ID"")"
-"  11 - filter(""R"".""SALARIO_ANUAL"" IS NOT NULL AND ""R"".""SALARIO_ANUAL""<>'NA')"
-"  14 - access(""S1"".""LINGUAGEM""=""S2"".""LINGUAGEM""(+) AND ""S1"".""ANO""=""S2"".""ANO""(+)+1)"
+   5 - filter(MAP_CURRENCY_TO_USD(M.MOEDA,TO_NUMBER(R.SALARIO_ANUAL))>=1000 AND MAP_CURRENCY_TO_USD(M.MOEDA,TO_NUMBER(R.SALARIO_ANUAL))<=1000000)
+   6 - access(R.MOEDA_ID=M.ID(+))
+   8 - access(RL.LINGUAGEM_ID=L.ID)
+  10 - access(R.ID=RL.RESPOSTA_ID)
+  11 - filter(R.SALARIO_ANUAL IS NOT NULL AND R.SALARIO_ANUAL<>'NA')
+  14 - access(S1.LINGUAGEM=S2.LINGUAGEM(+) AND S1.ANO=S2.ANO(+)+1)
+```

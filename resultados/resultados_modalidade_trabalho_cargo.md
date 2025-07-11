@@ -1,7 +1,10 @@
-ANTES:
+# Modalidade de Trabalho x Cargo
 
+<!-- Plano de execução antes dos índices -->
+
+```sql
 Plan hash value: 3717053907
- 
+
 ------------------------------------------------------------------------------------------------------------------------------
 | Id  | Operation                                | Name                      | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
 ------------------------------------------------------------------------------------------------------------------------------
@@ -27,23 +30,26 @@ Plan hash value: 3717053907
 |  19 |     VIEW                                 |                           |  1530 |   112K|       |     6   (0)| 00:00:01 |
 |  20 |      TABLE ACCESS FULL                   | SYS_TEMP_0FD9D673F_30A625 |  1530 |   106K|       |     6   (0)| 00:00:01 |
 ------------------------------------------------------------------------------------------------------------------------------
- 
-Predicate Information (identified by operation id):
----------------------------------------------------
- 
-"   6 - access(""RC"".""CARGO_ID""=""C"".""ID"")"
-"   8 - access(""R"".""TRABALHO_REMOTO_ID""=""TR"".""ID"")"
-"  10 - access(""R"".""ID""=""RC"".""RESPOSTA_ID"")"
-"  11 - filter(""R"".""TRABALHO_REMOTO_ID"" IS NOT NULL)"
-"  14 - access(""T"".""ANO""=""R"".""ANO"" AND ""T"".""TRABALHO_REMOTO""=""R"".""TRABALHO_REMOTO"" AND ""T"".""CARGO""=""R"".""CARGO"")"
-"  15 - filter(""R"".""RANKING""<=5)"
-"  16 - filter(ROW_NUMBER() OVER ( PARTITION BY ""ANO"",""TRABALHO_REMOTO"" ORDER BY ""TOTAL_RESPONDENTES"" DESC )<=5)"
+```
 
+```sql
+-- Condições de acesso e filtros do plano antes dos índices
+   6 - access("RC"."CARGO_ID"="C"."ID")
+   8 - access("R"."TRABALHO_REMOTO_ID"="TR"."ID")
+  10 - access("R"."ID"="RC"."RESPOSTA_ID")
+  11 - filter("R"."TRABALHO_REMOTO_ID" IS NOT NULL)
+  14 - access("T"."ANO"="R"."ANO" AND "T"."TRABALHO_REMOTO"="R"."TRABALHO_REMOTO" AND "T"."CARGO"="R"."CARGO")
+  15 - filter("R"."RANKING"<=5)
+  16 - filter(ROW_NUMBER() OVER ( PARTITION BY "ANO","TRABALHO_REMOTO" ORDER BY "TOTAL_RESPONDENTES" DESC )<=5)
+```
 
-DEPOIS:
+---
 
+<!-- Plano de execução depois dos índices -->
+
+```sql
 Plan hash value: 3717053907
- 
+
 ------------------------------------------------------------------------------------------------------------------------------
 | Id  | Operation                                | Name                      | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
 ------------------------------------------------------------------------------------------------------------------------------
@@ -69,14 +75,14 @@ Plan hash value: 3717053907
 |  19 |     VIEW                                 |                           |  1530 |   112K|       |     6   (0)| 00:00:01 |
 |  20 |      TABLE ACCESS FULL                   | SYS_TEMP_0FD9D6740_30A625 |  1530 |   106K|       |     6   (0)| 00:00:01 |
 ------------------------------------------------------------------------------------------------------------------------------
- 
-Predicate Information (identified by operation id):
----------------------------------------------------
- 
-"   6 - access(""RC"".""CARGO_ID""=""C"".""ID"")"
-"   8 - access(""R"".""TRABALHO_REMOTO_ID""=""TR"".""ID"")"
-"  10 - access(""R"".""ID""=""RC"".""RESPOSTA_ID"")"
-"  11 - filter(""R"".""TRABALHO_REMOTO_ID"" IS NOT NULL)"
-"  14 - access(""T"".""ANO""=""R"".""ANO"" AND ""T"".""TRABALHO_REMOTO""=""R"".""TRABALHO_REMOTO"" AND ""T"".""CARGO""=""R"".""CARGO"")"
-"  15 - filter(""R"".""RANKING""<=5)"
-"  16 - filter(ROW_NUMBER() OVER ( PARTITION BY ""ANO"",""TRABALHO_REMOTO"" ORDER BY ""TOTAL_RESPONDENTES"" DESC )<=5)"
+```
+
+```sql
+   6 - access("RC"."CARGO_ID"="C"."ID")
+   8 - access("R"."TRABALHO_REMOTO_ID"="TR"."ID")
+  10 - access("R"."ID"="RC"."RESPOSTA_ID")
+  11 - filter("R"."TRABALHO_REMOTO_ID" IS NOT NULL)
+  14 - access("T"."ANO"="R"."ANO" AND "T"."TRABALHO_REMOTO"="R"."TRABALHO_REMOTO" AND "T"."CARGO"="R"."CARGO")
+  15 - filter("R"."RANKING"<=5)
+  16 - filter(ROW_NUMBER() OVER ( PARTITION BY "ANO","TRABALHO_REMOTO" ORDER BY "TOTAL_RESPONDENTES" DESC )<=5)
+```

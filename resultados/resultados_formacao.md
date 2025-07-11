@@ -1,7 +1,10 @@
-ANTES:
+# Formação x Cargo
 
+<!-- Plano de execução antes dos índices -->
+
+```sql
 Plan hash value: 1442042534
- 
+
 ------------------------------------------------------------------------------------------------------------------------------
 | Id  | Operation                                | Name                      | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
 ------------------------------------------------------------------------------------------------------------------------------
@@ -36,25 +39,27 @@ Plan hash value: 1442042534
 |* 28 |        VIEW                              |                           |   823 | 28805 |       |     4   (0)| 00:00:01 |
 |  29 |         TABLE ACCESS FULL                | SYS_TEMP_0FD9D673B_30A625 |   823 | 52672 |       |     4   (0)| 00:00:01 |
 ------------------------------------------------------------------------------------------------------------------------------
- 
-Predicate Information (identified by operation id):
----------------------------------------------------
- 
-"   4 - access(""ITEM_1""=""C"".""ID"")"
-"   9 - access(""ITEM_2""=""F"".""ID"")"
-"       filter(""ITEM_2""=""F"".""ID"")"
-"  12 - access(""R"".""ID""=""RC"".""RESPOSTA_ID"")"
-"  16 - access(""R"".""ANO""=""EA"".""ANO"")"
-"  21 - access(""R"".""ANO""=""E"".""ANO"" AND ""R"".""FORMACAO""=""E"".""FORMACAO"")"
-"  26 - filter(""R"".""RANKING""<=5)"
-"  27 - filter(ROW_NUMBER() OVER ( PARTITION BY ""ANO"",""FORMACAO"" ORDER BY ""TOTAL_RESPONDENTES"" DESC )<=5)"
-"  28 - filter(""TOTAL_RESPONDENTES"">=3)"
+```
 
+```sql
+   4 - access("ITEM_1"="C"."ID")
+   9 - access("ITEM_2"="F"."ID")
+       filter("ITEM_2"="F"."ID")
+  12 - access("R"."ID"="RC"."RESPOSTA_ID")
+  16 - access("R"."ANO"="EA"."ANO")
+  21 - access("R"."ANO"="E"."ANO" AND "R"."FORMACAO"="E"."FORMACAO")
+  26 - filter("R"."RANKING"<=5)
+  27 - filter(ROW_NUMBER() OVER ( PARTITION BY "ANO","FORMACAO" ORDER BY "TOTAL_RESPONDENTES" DESC )<=5)
+  28 - filter("TOTAL_RESPONDENTES">=3)
+```
 
-DEPOIS:
+---
 
+<!-- Plano de execução depois dos índices -->
+
+```sql
 Plan hash value: 1442042534
- 
+
 ------------------------------------------------------------------------------------------------------------------------------
 | Id  | Operation                                | Name                      | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
 ------------------------------------------------------------------------------------------------------------------------------
@@ -89,16 +94,16 @@ Plan hash value: 1442042534
 |* 28 |        VIEW                              |                           |   823 | 28805 |       |     4   (0)| 00:00:01 |
 |  29 |         TABLE ACCESS FULL                | SYS_TEMP_0FD9D673C_30A625 |   823 | 52672 |       |     4   (0)| 00:00:01 |
 ------------------------------------------------------------------------------------------------------------------------------
- 
-Predicate Information (identified by operation id):
----------------------------------------------------
- 
-"   4 - access(""ITEM_1""=""C"".""ID"")"
-"   9 - access(""ITEM_2""=""F"".""ID"")"
-"       filter(""ITEM_2""=""F"".""ID"")"
-"  12 - access(""R"".""ID""=""RC"".""RESPOSTA_ID"")"
-"  16 - access(""R"".""ANO""=""EA"".""ANO"")"
-"  21 - access(""R"".""ANO""=""E"".""ANO"" AND ""R"".""FORMACAO""=""E"".""FORMACAO"")"
-"  26 - filter(""R"".""RANKING""<=5)"
-"  27 - filter(ROW_NUMBER() OVER ( PARTITION BY ""ANO"",""FORMACAO"" ORDER BY ""TOTAL_RESPONDENTES"" DESC )<=5)"
-"  28 - filter(""TOTAL_RESPONDENTES"">=3)"
+```
+
+```sql
+   4 - access("ITEM_1"="C"."ID")
+   9 - access("ITEM_2"="F"."ID")
+       filter("ITEM_2"="F"."ID")
+  12 - access("R"."ID"="RC"."RESPOSTA_ID")
+  16 - access("R"."ANO"="EA"."ANO")
+  21 - access("R"."ANO"="E"."ANO" AND "R"."FORMACAO"="E"."FORMACAO")
+  26 - filter("R"."RANKING"<=5)
+  27 - filter(ROW_NUMBER() OVER ( PARTITION BY "ANO","FORMACAO" ORDER BY "TOTAL_RESPONDENTES" DESC )<=5)
+  28 - filter("TOTAL_RESPONDENTES">=3)
+```
