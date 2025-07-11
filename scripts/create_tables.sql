@@ -1,23 +1,23 @@
--- DROP TABLE Resposta_ProgLanguage;
--- DROP TABLE Resposta_Cargo;
--- DROP TABLE Resposta;
---
--- DROP TABLE ProgLanguage;
--- DROP TABLE Moeda;
--- DROP TABLE Cargo;
--- DROP TABLE pais;
--- DROP TABLE Formacao;
--- DROP TABLE WorkRemote;
--- DROP TABLE AgeGroup;
---
--- DROP SEQUENCE Moeda_Seq;
--- DROP SEQUENCE Cargo_Seq;
--- DROP SEQUENCE pais_Seq;
--- DROP SEQUENCE Formacao_Seq;
--- DROP SEQUENCE WorkRemote_Seq;
--- DROP SEQUENCE AgeGroup_Seq;
--- DROP SEQUENCE ProgLanguage_Seq;
--- DROP SEQUENCE Resposta_Seq;
+DROP TABLE Resposta_Linguagem;
+DROP TABLE Resposta_Cargo;
+DROP TABLE Resposta;
+
+DROP TABLE Linguagem;
+DROP TABLE Moeda;
+DROP TABLE Cargo;
+DROP TABLE pais;
+DROP TABLE Formacao;
+DROP TABLE TrabalhoRemoto;
+DROP TABLE FaixaEtaria;
+
+DROP SEQUENCE Moeda_Seq;
+DROP SEQUENCE Cargo_Seq;
+DROP SEQUENCE pais_Seq;
+DROP SEQUENCE Formacao_Seq;
+DROP SEQUENCE TrabalhoRemoto_Seq;
+DROP SEQUENCE FaixaEtaria_Seq;
+DROP SEQUENCE Linguagem_Seq;
+DROP SEQUENCE Resposta_Seq;
 
 CREATE TABLE Linguagem
 (
@@ -59,7 +59,7 @@ CREATE TABLE Cargo
 CREATE TABLE Moeda
 (
     id       INT PRIMARY KEY,
-    moeda VARCHAR(32) NOT NULL
+    moeda VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE Resposta
