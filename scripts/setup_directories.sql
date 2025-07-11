@@ -1,11 +1,11 @@
 GRANT EXECUTE ON UTL_FILE TO SYS;
 
 
-CREATE OR REPLACE DIRECTORY DATASETS_2019 AS 'C:\Users\Watanabe\Desktop\Repositorios\StackOverflowRelatory\datasets\full\2019';
-CREATE OR REPLACE DIRECTORY DATASETS_2020 AS 'C:\Users\Watanabe\Desktop\Repositorios\StackOverflowRelatory\datasets\full\2020';
-CREATE OR REPLACE DIRECTORY DATASETS_2021 AS 'C:\Users\Watanabe\Desktop\Repositorios\StackOverflowRelatory\datasets\full\2021';
-CREATE OR REPLACE DIRECTORY DATASETS_2022 AS 'C:\Users\Watanabe\Desktop\Repositorios\StackOverflowRelatory\datasets\full\2022';
-CREATE OR REPLACE DIRECTORY DATASETS_2023 AS 'C:\Users\Watanabe\Desktop\Repositorios\StackOverflowRelatory\datasets\full\2023';
+CREATE OR REPLACE DIRECTORY DATASETS_2019 AS 'C:\Users\Shinji\StackOverflowRelatory\datasets\full\2019';
+CREATE OR REPLACE DIRECTORY DATASETS_2020 AS 'C:\Users\Shinji\StackOverflowRelatory\datasets\full\2020';
+CREATE OR REPLACE DIRECTORY DATASETS_2021 AS 'C:\Users\Shinji\StackOverflowRelatory\datasets\full\2021';
+CREATE OR REPLACE DIRECTORY DATASETS_2022 AS 'C:\Users\Shinji\StackOverflowRelatory\datasets\full\2022';
+CREATE OR REPLACE DIRECTORY DATASETS_2023 AS 'C:\Users\Shinji\StackOverflowRelatory\datasets\full\2023';
 
 GRANT READ ON DIRECTORY DATASETS_2019 TO SYS;
 GRANT READ ON DIRECTORY DATASETS_2020 TO SYS;
